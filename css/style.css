@@ -38,7 +38,7 @@ body {
 }
 .cookie__spots--first {
   top: 10%;
-  left: 5%;
+  left: 10%;
 }
 .cookie__spots--second {
   right: 10%;
@@ -64,7 +64,10 @@ body {
 .cookie__spots--seventh {
   top: 30%;
   left: 90%;
-  background: black;
+}
+.cookie__spots--eigth {
+  top: 80%;
+  left: 50%;
 }
 
 /*# sourceMappingURL=style.css.map */
