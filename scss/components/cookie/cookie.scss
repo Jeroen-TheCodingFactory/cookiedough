@@ -1,0 +1,56 @@
+.cookie{
+    width: 40rem;
+    background: #C68B59;
+    border-radius:50%;
+    aspect-ratio: 1/1;
+    position:relative;
+    overflow:hidden;
+    border: 0.5rem solid #040303;
+
+    &__spots{
+        width: 7rem;
+        aspect-ratio: 1/1;
+        background: #040303;
+        border-radius: 48%;
+        position:absolute;
+
+        &--first{
+            top:10%;
+            left:5%;
+        }
+
+        &--second{
+            right:10%;
+            top:5%;
+        }
+
+        &--third{
+            right:5%;
+            bottom:10%;
+        }
+
+        &--fourth{
+            left:5%;
+            bottom:10%;
+        }
+
+        &--fifth{
+            left:50%;
+            top:30%;
+            transform: translate(-50%,-50%);
+        }
+
+        &--sixth{
+            top:50%;
+            left:30%;
+        }
+
+        &--seventh{
+            top:30%;
+            left:90%;
+            background:black;
+        }
+        
+    }
+}
+
