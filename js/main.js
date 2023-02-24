@@ -53,6 +53,11 @@ class Score{
         this.score = this.score + 10000;
         this.htmlElement.innerText = this.score;
     }
+
+    scoreLoaded(newScore){
+        this.score = newScore;
+        this.htmlElement.innerText = this.score;
+    }
 }
 
 class Multiplier{
@@ -110,24 +115,62 @@ class ChocolateCookie{
     }
 
     onChocolateCookieClicked = () => {
-        if(this.bought === false){
+        if(this.bought === false && window.localStorage.getItem("chocolateCookie") !== "true"){
             this.bought = true;
-            this.cookie.onStyleChange();
+            window.localStorage.setItem("chocolateCookie", this.bought);
             this.cookie.score.addPoints();
         }
+
+        this.cookie.onStyleChange();
     }
 }
 
+class Save{
+    htmlElement;
+
+    constructor(newHTMLElement){
+        this.htmlElement = newHTMLElement;
+        this.htmlElement.onclick = this.onSaveButtonClicked;
+
+    }
+
+    onSaveButtonClicked = () =>{
+        window.localStorage.setItem("score",score.score);
+    }
+}
+
+class Load{
+    score;
+
+    constructor(score){
+        this.score = score;
+
+        this.onLoad();
+    }
+
+    onLoad = function(){
+        const scoreFromLocalStorage = window.localStorage.getItem("score");
+        if(scoreFromLocalStorage !== null ){
+            this.score.scoreLoaded(parseInt(scoreFromLocalStorage));
+        }
+    }
+}
 /* setup for score and cookie */
-const score = new Score(555, "Default Score", document.getElementById("js--score"));
+const score = new Score(333, "Default Score", document.getElementById("js--score"));
 const cookie = new Cookie("Default Cookie", document.getElementById("js--cookie"), score);
 
 /* setup desktop upgrades */
 const multiplier = new Multiplier(document.getElementById("js--multiplier"), cookie);
 const auto = new AutoScore(document.getElementById("js--autoScore"),score);
 const chocolate = new ChocolateCookie(document.getElementById("js--chocolate"), cookie);
+const save = new Save(document.getElementById("js--save"));
+const load = new Load(score);
 
 /* setup mobile upgrades */
 const multiplierMobile = new Multiplier(document.getElementById("js--multiplier--mobile"),cookie);
 const autoMobile = new AutoScore(document.getElementById("js--autoScore--mobile"),score);
 const chocolateMobile = new ChocolateCookie(document.getElementById("js--chocolate--mobile"), cookie);
+
+// window.localStorage.clear();
+// window.localStorage.setItem("name","Jeroen");
+// console.log(window.localStorage);
